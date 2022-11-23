@@ -11,9 +11,6 @@ app.use(router)
 router.use(express.json())
 router.use(cors())
 
-const mongoClient = new MongoClient(process.env.MONGO_URI)
-const db = mongoClient('8styles')
-
 const port = process.env.PORT || 5000
 
 app.listen(port, () => {
