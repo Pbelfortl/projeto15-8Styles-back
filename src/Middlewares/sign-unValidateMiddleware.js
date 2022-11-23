@@ -26,6 +26,8 @@ export async function signupValidation(req, res, next)  {
         req.user = user;
     } catch {
         return res.sendStatus(500);
-    }
+    }   
+
+    next();
 
 }
