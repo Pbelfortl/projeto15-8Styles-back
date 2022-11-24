@@ -1,15 +1,17 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import { MongoClient } from 'mongodb'
 dotenv.config()
 
+import usersRouter from './Routes/usersRoutes.js'
 
-const app = express()
-const router = express.Router()
-app.use(router)
-router.use(express.json())
-router.use(cors())
+const app = express();
+
+app.use(express.json())
+app.use(cors())
+app.use(usersRouter)
+
+
 
 const port = process.env.PORT || 5000
 

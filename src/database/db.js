@@ -14,4 +14,3 @@ const db = mongoClient.db("8Styles");
 export const usersCollection = db.collection("users");
 export const sessionsCollection = db.collection("sessions");
 export const productsCollection = db.collection("products");
-
