@@ -16,3 +16,24 @@ export async function signUp(req, res) {
     }
 }
 
+export async function singIn(req, res) {
+    const user = req.user;
+    const token = uuidV4();
+
+    try {
+        //const userName = userExists.name;
+        await sessionsCollection.insertOne(
+            {
+                token,
+                userId: user._id
+            }
+        )
+
+        res.send({ token });
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+
+}
+
