@@ -4,12 +4,14 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import usersRouter from './Routes/usersRoutes.js'
+import productsRouter from './Routes/productsRouter.js'
 
 const app = express();
 
 app.use(express.json())
 app.use(cors())
 app.use(usersRouter)
+app.use(productsRouter)
 
 
 
