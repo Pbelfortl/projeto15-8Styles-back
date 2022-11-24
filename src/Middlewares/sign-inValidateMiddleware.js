@@ -2,7 +2,7 @@ import signinSchema from "../Models/sign-inModel.js";
 import { usersCollection } from "../database/db.js";
 import bcrypt from "bcrypt";
 
-export async function signupValidation(req, res, next) {
+export async function signinValidation(req, res, next) {
     const { email, password } =  req.body;
 
     try {
