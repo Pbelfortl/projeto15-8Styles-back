@@ -2,6 +2,7 @@ import { cartCollection } from "../database/db.js";
 
 export async function addProductToCart(req, res) {
   const product = res.locals.product; //item virá do middleware de validação do carrinho
+  console.log(product)
 
   try {
     await cartCollection.insertOne(product);

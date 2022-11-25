@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { productsCollection } from "../database/db.js";
 
 export async function cartValidation(req, res, next) {
@@ -12,7 +13,14 @@ export async function cartValidation(req, res, next) {
   }
 
   try {
-    res.locals.product = await productsCollection.findOne({ _id: productId });
+    const productAlreadyInCart = await productsCollection.findOne({ _id: new ObjectId(productId) })
+
+    if(productAlreadyInCart) {
+      alert("Esse produto já está no seu carrinho")
+      return res.sendStatus(409)
+    } else {
+    res.locals.product = productAlreadyInCart;
+    }
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
