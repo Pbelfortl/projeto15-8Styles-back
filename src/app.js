@@ -5,6 +5,7 @@ dotenv.config()
 
 import usersRouter from './Routes/usersRoutes.js'
 import productsRouter from './Routes/productsRouter.js'
+import cartRouter from './Routes/cartRouter.js'
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json())
 app.use(cors())
 app.use(usersRouter)
 app.use(productsRouter)
+app.use(cartRouter)
 
 
 
