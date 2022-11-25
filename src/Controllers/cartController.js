@@ -2,7 +2,6 @@ import { cartCollection } from "../database/db.js";
 
 export async function addProductToCart(req, res) {
   const product = res.locals.product; //item virá do middleware de validação do carrinho
-  console.log(product);
 
   try {
     await cartCollection.insertOne(product);
@@ -27,7 +26,7 @@ export async function removeProductFromCart(req, res) {
 export async function listCart(req, res) {
   try {
     const cart = await cartCollection.find({}).toArray();
-    res.send(cart)
+    res.send(cart);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
