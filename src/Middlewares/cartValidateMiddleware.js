@@ -16,8 +16,7 @@ export async function cartValidation(req, res, next) {
     const productAlreadyInCart = await productsCollection.findOne({ _id: new ObjectId(productId) })
 
     if(productAlreadyInCart) {
-      alert("Esse produto já está no seu carrinho")
-      return res.sendStatus(409)
+      return res.send({message: "Esse produto já está no seu carrinho"}).status(409)
     } else {
     res.locals.product = productAlreadyInCart;
     }
