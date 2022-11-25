@@ -1,12 +1,12 @@
 import {Router} from 'express'
 import { addProductToCart, removeProductFromCart, listCart } from '../Controllers/cartController.js'
-import { cartValidation } from '../Middlewares/cartValidateMiddleware.js'
+import { addToCartValidation } from '../Middlewares/addToCartValidateMiddleware.js'
+import { removeFromCartValidation } from '../Middlewares/removeFromCartValidateMiddleware.js'
 
 const cartRouter = Router()
 
 cartRouter.get("/cart", listCart)
-cartRouter.use(cartValidation)
-cartRouter.post("/addCart", addProductToCart)
-cartRouter.post("/removeCart", removeProductFromCart)
+cartRouter.post("/addCart", addToCartValidation, addProductToCart)
+cartRouter.post("/removeCart", removeFromCartValidation, removeProductFromCart)
 
 export default cartRouter;
