@@ -16,7 +16,7 @@ export async function signUp(req, res) {
     }
 }
 
-export async function singIn(req, res) {
+export async function signIn(req, res) {
     const user = req.user;
     const token = uuidV4();
 
