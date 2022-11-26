@@ -3,6 +3,7 @@ import { cartCollection, productsCollection } from "../database/db.js";
 
 export async function addToCartValidation(req, res, next) {
   const productId = req.query.product;
+  const user = req.validUser;
 
   try {
     const productToBeAdded = await productsCollection.findOne({

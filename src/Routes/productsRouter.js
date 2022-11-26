@@ -7,6 +7,6 @@ import { productValidation } from '../Middlewares/productValidateMiddleware.js'
 const productsRouter = express.Router()
 
 productsRouter.post("/insertProduct",productValidation, insertProduct)
-productsRouter.get("getProducts/", getProducts)
+productsRouter.get("/getProducts", getProducts)
 
 export default productsRouter
