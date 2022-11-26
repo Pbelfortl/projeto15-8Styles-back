@@ -6,8 +6,9 @@ import authValidate from '../Middlewares/authValidateMiddleware.js'
 
 const cartRouter = Router()
 
-cartRouter.get("/cart", listCart)
+
 cartRouter.use(authValidate)
+cartRouter.get("/cart", listCart)
 cartRouter.post("/addCart", addToCartValidation, addProductToCart)
 cartRouter.post("/removeCart", removeFromCartValidation, removeProductFromCart)
 
