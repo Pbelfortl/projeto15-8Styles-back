@@ -5,7 +5,7 @@ export async function addProductToCart(req, res) {
   const user = req.validUser
   
   try {
-    await cartCollection.insertOne({...product, user: user._id });
+    await cartCollection.insertOne({product, user: user._id });
     res.sendStatus(201);
   } catch (err) {
     console.log(err);
