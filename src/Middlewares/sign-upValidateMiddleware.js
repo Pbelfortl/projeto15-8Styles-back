@@ -10,10 +10,10 @@ export async function signupValidation(req, res, next)  {
     }
 
     try {
-        console.log("oi")
+        
         const userExists = await usersCollection.findOne({ email: user.email });
 
-        console.log(userExists)
+       
         if (userExists) {
             return res.status(409).send({ message: "Esse email já existe" });
         }
