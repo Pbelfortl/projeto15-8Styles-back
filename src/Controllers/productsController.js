@@ -21,20 +21,20 @@ export async function getProducts (req, res) {
 
     try {
 
-        if(category){
-            const product = await productsCollection.find({category:category}).toArray()
+        if(category && subCategory){
+            const product = await productsCollection.find({SubCategory:category}).toArray()
             return res.status(200).send(product)
         }
 
-        if(subCategory){
-            const product = await productsCollection.find({subCategory:subCategory}).toArray()
+        if(category){
+            const product = await productsCollection.find({Category:category}).toArray()
             return res.status(200).send(product)
         }
 
         const product = await productsCollection.find().toArray()
         res.status(200).send(product)
     }catch (err) {
-        sendStatus(500)
+        res.sendStatus(500)
     }
     
 }
