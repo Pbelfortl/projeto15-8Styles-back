@@ -4,7 +4,6 @@ export default async function authValidate(req, res, next) {
   const { authorization } = req.headers;
   const token = authorization?.replace("Bearer ", "");
 
-  console.log(token)
   if (!token)
     return res.status(401).send({ message: "Token incorreto ou inexistente" });
 
