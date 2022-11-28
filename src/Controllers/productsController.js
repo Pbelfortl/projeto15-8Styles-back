@@ -34,7 +34,7 @@ export async function getProducts (req, res) {
         }
 
         const product = await productsCollection.find().toArray()
-        console.log(product)
+        //console.log(product)
         res.status(200).send(product)
     }catch (err) {
         res.sendStatus(500)

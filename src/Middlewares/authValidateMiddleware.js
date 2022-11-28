@@ -10,6 +10,7 @@ export default async function authValidate(req, res, next) {
 
   try {
     const session = await sessionsCollection.findOne({ token });
+    //console.log(session);
     const user = await usersCollection.findOne({ _id: session?.userId });
 
     delete user.password;
