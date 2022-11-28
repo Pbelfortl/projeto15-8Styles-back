@@ -12,6 +12,11 @@ export default async function authValidate(req, res, next) {
     //console.log(session);
     const user = await usersCollection.findOne({ _id: session?.userId });
 
+
+    if (!user) {
+      return res.sendStatus(401)
+    }
+
     delete user.password;
 
     req.validUser = user;
