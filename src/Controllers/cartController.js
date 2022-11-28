@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { cartCollection } from "../database/db.js";
+import { cartCollection, purchaseCollection } from "../database/db.js";
 
 export async function addProductToCart(req, res) {
   const product = res.locals.product;
@@ -39,4 +39,18 @@ export async function listCart(req, res) {
     console.log(err);
     res.sendStatus(500);
   }
+}
+
+export async function purchase(req, res) {
+  const purchaseInformations = req.body
+  const user = req.validUser
+
+  try {
+    await purchaseCollection.insertOne( {purchaseInformations, user: user._id})
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+
 }
