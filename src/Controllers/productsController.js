@@ -22,16 +22,17 @@ export async function getProducts (req, res) {
     try {
 
         if(category && subCategory){
-            const product = await productsCollection.find({SubCategory:category}).toArray()
+            const product = await productsCollection.find({subCategory:subCategory}).toArray()
             return res.status(200).send(product)
         }
 
         if(category){
-            const product = await productsCollection.find({Category:category}).toArray()
+            const product = await productsCollection.find({category:category}).toArray()
             return res.status(200).send(product)
         }
 
         const product = await productsCollection.find().toArray()
+        console.log(product)
         res.status(200).send(product)
     }catch (err) {
         res.sendStatus(500)
