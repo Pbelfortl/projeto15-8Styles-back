@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { cartCollection } from "../database/db.js";
 
 export async function addProductToCart(req, res) {
@@ -5,7 +6,7 @@ export async function addProductToCart(req, res) {
   const user = req.validUser
   
   try {
-    await cartCollection.insertOne({...product, user: user._id });
+    await cartCollection.insertOne({product, user: user._id });
     res.sendStatus(201);
   } catch (err) {
     console.log(err);
@@ -15,10 +16,13 @@ export async function addProductToCart(req, res) {
 
 export async function removeProductFromCart(req, res) {
   const productToBeRemoved = res.locals.product;
-  const user = req.validUser
+  const {_id} = req.validUser;
+
+  console.log("Product id: " + productToBeRemoved._id)
+  console.log("User Id: " + _id)
 
   try {
-    await cartCollection.deleteOne({ $and: [{_id: productToBeRemoved._id, user: user._id}] });
+    await cartCollection.deleteOne({ $and: [{_id: productToBeRemoved._id}, {user: _id}] });
     res.sendStatus(200);
   } catch (err) {
     console.log(err);

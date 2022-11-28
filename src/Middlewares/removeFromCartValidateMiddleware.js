@@ -3,18 +3,19 @@ import { cartCollection } from "../database/db.js";
 
 export async function removeFromCartValidation(req, res, next) {
   const productId = req.query.product;
+  
+
+  if (!productId) {
+    return res.status(404).send({
+      message: "insira o id do produto por query: ?product=idDoProduto",
+    });
+  }
 
   try {
     const productToBeRemoved = await cartCollection.findOne({
       _id: new ObjectId(productId),
     });
-
-    if (!productId) {
-      return res.status(404).send({
-        message: "insira o id do produto por query: ?product=idDoProduto",
-      });
-    }
-
+    console.log(productToBeRemoved)
     if (productToBeRemoved) {
       res.locals.product = productToBeRemoved;
 
