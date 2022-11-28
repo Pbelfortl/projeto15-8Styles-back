@@ -14,12 +14,12 @@ export async function addToCartValidation(req, res, next) {
       _id: new ObjectId(productId),
     });
 
-    // function validateProductToBeInserted() { //Verifica se o produto já está no carrinho e pertence ao usuário logado
+    function validateProductToBeInserted() { //Verifica se o produto já está no carrinho e pertence ao usuário logado
       
-    //   if (productId === productAlreadyinCart._id && productAlreadyinCart && productAlreadyinCart.user.toString() === user._id.toString()) {
-    //     return true;
-    //   } else return false
-    // }
+      if (productId === productAlreadyinCart._id && productAlreadyinCart && productAlreadyinCart.user.toString() === user._id.toString()) {
+        return true;
+      } else return false
+    }
     
     if (!productId) {
       return res.status(404).send({
@@ -27,7 +27,7 @@ export async function addToCartValidation(req, res, next) {
       });
     }
 
-    if (productAlreadyinCart) {
+    if (validateProductToBeInserted()) {
       return res
         .status(409)
         .send({ message: "Esse produto já está no seu carrinho" });
