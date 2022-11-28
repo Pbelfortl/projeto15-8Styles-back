@@ -1,10 +1,10 @@
 import joi from "joi";
 
 const purchaseSchema = joi.object({
-    name:joi.string().min(6).required(),
-    CEP:joi.number().required(),
+    name:joi.string().min(3).required(),
+    CEP:joi.string().required(),
     paymentType:joi.valid("cartao", "pix", "boleto").required(),
-    products:joi.object().required(),
+    products:joi.array().required(),
     value:joi.number().required()
     
 })

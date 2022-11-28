@@ -55,6 +55,7 @@ export async function purchase(req, res) {
 
   try {
     await purchaseCollection.insertOne( {purchaseInformations, user: user._id})
+    await cartCollection.deleteMany({user: user._id})
     res.sendStatus(200);
   } catch (error) {
     console.log(error)
